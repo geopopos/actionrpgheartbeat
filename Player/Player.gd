@@ -77,8 +77,10 @@ func attack_state(delta):
 	# stops weird slide after attack
 	velocity = Vector2.ZERO
 	animationState.travel("Attack")
-	
+
+# called via a method call inside the attack animations in the AnimationPlayer
 func attack_animation_finished():
+	print("attack animation finished")
 	state = MOVE
 	
 func move():
@@ -89,7 +91,9 @@ func roll_state(delta):
 	animationState.travel("Roll")
 	move()
 	
+# called via a method call inside the roll animations in the AnimationPlayer
 func roll_animation_finished():
+	print("roll animation finished")
 	velocity = Vector2.ZERO
 	hurtbox_collision.set_deferred("disabled", false)
 	state = MOVE
@@ -113,3 +117,4 @@ func _on_Hurtbox_status_stopped():
 	sprite.modulate = Color(1, 1, 1)
 	animationPlayer.play()
 	state = MOVE
+
