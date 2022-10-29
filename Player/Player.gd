@@ -12,7 +12,7 @@ enum {
 	FREEZE
 }
 
-var state = MOVE
+var state = MOVE setget set_state
 var velocity = Vector2.ZERO
 var roll_vector = Vector2.DOWN
 var stats = PlayerStats
@@ -28,6 +28,10 @@ func _ready():
 	stats.connect("no_health", self, "queue_free")
 	animationTree.active = true
 	$HitboxPivot/SwordHitbox/CollisionShape2D.disabled = true
+
+func set_state(value):
+	print(value)
+	state = value
 
 func _physics_process(delta):
 	match state:
@@ -66,11 +70,11 @@ func move_state(delta):
 	move()
 	
 	if Input.is_action_just_pressed("attack"):
-		state = ATTACK
+		set_state(ATTACK)
 		
 	if Input.is_action_just_pressed("roll"):
 		hurtbox_collision.set_deferred("disabled", true)
-		state = ROLL
+		set_state(ROLL)
 	
 	
 func attack_state(delta):
@@ -81,7 +85,8 @@ func attack_state(delta):
 # called via a method call inside the attack animations in the AnimationPlayer
 func attack_animation_finished():
 	print("attack animation finished")
-	state = MOVE
+	if state != FREEZE:
+		set_state(MOVE)
 	
 func move():
 	velocity = move_and_slide(velocity)
@@ -96,7 +101,7 @@ func roll_animation_finished():
 	print("roll animation finished")
 	velocity = Vector2.ZERO
 	hurtbox_collision.set_deferred("disabled", false)
-	state = MOVE
+	set_state(MOVE)
 
 
 func _on_Hurtbox_area_entered(area):
@@ -104,7 +109,7 @@ func _on_Hurtbox_area_entered(area):
 	hurtbox.start_invincibility(0.5)
 	if area.type == "FREEZE":
 		hurtbox.create_status_effect(area.type, area, self)
-		state = FREEZE
+		set_state(FREEZE)
 	else:
 		hurtbox.create_hit_effect(area)
 
@@ -116,5 +121,5 @@ func _on_Hurtbox_status_started(color):
 func _on_Hurtbox_status_stopped():
 	sprite.modulate = Color(1, 1, 1)
 	animationPlayer.play()
-	state = MOVE
+	set_state(MOVE)
 
