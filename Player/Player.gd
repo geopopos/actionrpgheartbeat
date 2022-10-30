@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+const PlayerHurtSound = preload("res://Player/PlayerHurtSound.tscn")
+
 export var ACCELERATION = 500
 export var MAX_SPEED = 100
 export var ROLL_SPEED = 150
@@ -109,6 +111,8 @@ func _on_Hurtbox_area_entered(area):
 		set_state(FREEZE)
 	else:
 		hurtbox.create_hit_effect(area)
+		var playerHurtSound = PlayerHurtSound.instance()
+		get_tree().current_scene.add_child(playerHurtSound)
 
 
 func _on_Hurtbox_status_started(color):
