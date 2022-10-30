@@ -26,6 +26,7 @@ onready var shadowSprite = $ShadowSprite
 onready var hurtbox = $Hurtbox
 onready var animationPlayer = $AnimationPlayer
 onready var wanderController = $WanderController
+onready var blinkAnimationPlayer = $BlinkAnimationPlayer
 
 func _ready():
 	print(stats.max_health)
@@ -95,6 +96,7 @@ func _on_Hurtbox_area_entered(area):
 		knockback.y /= m
 		
 		knockback = knockback * 125
+	hurtbox.start_invincibility(0.3)
 
 func _on_Stats_no_health():
 	queue_free()
@@ -112,3 +114,11 @@ func _on_Hurtbox_status_stopped():
 	sprite.modulate = Color(1, 1, 1)
 	animationPlayer.play()
 	state = CHASE
+
+
+func _on_Hurtbox_invincibility_started():
+	blinkAnimationPlayer.play("Start")
+
+
+func _on_Hurtbox_invincibility_ended():
+	blinkAnimationPlayer.play("Stop")

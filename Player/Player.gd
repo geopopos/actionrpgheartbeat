@@ -25,6 +25,7 @@ onready var animationState = animationTree.get("parameters/playback")
 onready var hurtbox = $Hurtbox
 onready var hurtbox_collision = $Hurtbox/CollisionShape2D
 onready var sprite = $Sprite
+onready var blinkAnimationPlayer = $BlinkAnimationPlayer
 
 func _ready():
 	stats.connect("no_health", self, "queue_free")
@@ -104,8 +105,8 @@ func roll_animation_finished():
 
 
 func _on_Hurtbox_area_entered(area):
-	stats.health -= 1
-	hurtbox.start_invincibility(0.5)
+	stats.health -= area.damage
+	hurtbox.start_invincibility(0.7)
 	if area.type == "FREEZE":
 		hurtbox.create_status_effect(area.type, area, self)
 		set_state(FREEZE)
@@ -124,3 +125,11 @@ func _on_Hurtbox_status_stopped():
 	animationPlayer.play()
 	set_state(MOVE)
 
+
+
+func _on_Hurtbox_invincibility_started():
+	blinkAnimationPlayer.play("Start")
+
+
+func _on_Hurtbox_invincibility_ended():
+	blinkAnimationPlayer.play("Stop")
