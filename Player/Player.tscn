@@ -757,6 +757,8 @@ collision_layer = 4
 position = Vector2( 0, -4 )
 shape = SubResource( 49 )
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="status_started" from="Hurtbox" to="." method="_on_Hurtbox_status_started"]
 [connection signal="status_stopped" from="Hurtbox" to="." method="_on_Hurtbox_status_stopped"]

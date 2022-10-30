@@ -30,7 +30,6 @@ func _ready():
 	$HitboxPivot/SwordHitbox/CollisionShape2D.disabled = true
 
 func set_state(value):
-	print(value)
 	state = value
 
 func _physics_process(delta):
@@ -84,7 +83,6 @@ func attack_state(delta):
 
 # called via a method call inside the attack animations in the AnimationPlayer
 func attack_animation_finished():
-	print("attack animation finished")
 	if state != FREEZE:
 		set_state(MOVE)
 	
@@ -98,7 +96,6 @@ func roll_state(delta):
 	
 # called via a method call inside the roll animations in the AnimationPlayer
 func roll_animation_finished():
-	print("roll animation finished")
 	velocity = Vector2.ZERO
 	hurtbox_collision.set_deferred("disabled", false)
 	set_state(MOVE)
