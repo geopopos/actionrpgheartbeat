@@ -160,7 +160,6 @@ anims/RESET = SubResource( 2 )
 shape = SubResource( 3 )
 
 [node name="Hurtbox" parent="." instance=ExtResource( 3 )]
-visible = false
 collision_layer = 8
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
@@ -170,13 +169,11 @@ shape = SubResource( 4 )
 [node name="Stats" parent="." instance=ExtResource( 5 )]
 
 [node name="PlayerDetectionZone" parent="." instance=ExtResource( 6 )]
-visible = false
 
 [node name="CollisionShape2D" parent="PlayerDetectionZone" index="0"]
 shape = SubResource( 5 )
 
 [node name="Hitbox" parent="." instance=ExtResource( 7 )]
-visible = false
 collision_mask = 4
 type = "NONE"
 
@@ -186,7 +183,6 @@ rotation = 1.5708
 shape = SubResource( 6 )
 
 [node name="SoftCollision" parent="." instance=ExtResource( 8 )]
-visible = false
 
 [node name="CollisionShape2D" parent="SoftCollision" index="0"]
 shape = SubResource( 7 )

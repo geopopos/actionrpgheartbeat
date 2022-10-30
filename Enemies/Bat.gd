@@ -18,6 +18,7 @@ enum {
 }
 
 var state = CHASE
+var spawner
 
 onready var stats = $Stats
 onready var playerDetectionZone = $PlayerDetectionZone
@@ -99,6 +100,7 @@ func _on_Hurtbox_area_entered(area):
 	hurtbox.start_invincibility(0.3)
 
 func _on_Stats_no_health():
+	spawner.set_state(1)
 	queue_free()
 	var enemyDeathEffect = EnemyDeathEffect.instance()
 	get_parent().add_child(enemyDeathEffect)

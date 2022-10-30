@@ -1,4 +1,6 @@
+[] add enemy respawns
 [] add pathfinding for enemies
 [] add boundary and blocked tile systems
 [] add portals
+[] add selectable inventory system
 
