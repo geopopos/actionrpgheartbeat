@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=2]
+[gd_scene load_steps=67 format=2]
 
 [ext_resource path="res://World/Bush.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://World/Tree.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Camera2D.tscn" type="PackedScene" id=10]
 [ext_resource path="res://World/blocked_tile.png...png" type="Texture" id=11]
+[ext_resource path="res://Portal.tscn" type="PackedScene" id=12]
 
 [sub_resource type="TileSet" id=52]
 1/name = "GrassBackground.png 1"
@@ -668,5 +669,12 @@ position = Vector2( 288, 144 )
 [node name="EnemySpawn3" parent="." instance=ExtResource( 6 )]
 visible = false
 position = Vector2( 16, 104 )
+
+[node name="Portal" parent="." instance=ExtResource( 12 )]
+position = Vector2( 160, 184 )
+collision_layer = 0
+collision_mask = 2
+next_scene_path = "res://World 2.tscn"
+player_spawn_location = Vector2( 300, 300 )
 
 [editable path="Camera2D"]
