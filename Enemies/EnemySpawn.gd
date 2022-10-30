@@ -22,8 +22,8 @@ func create_new_enemy():
 	print("new enemy spawned")
 	var enemy = Enemy.instance()
 	enemy.spawner = self
-	get_tree().current_scene.add_child(enemy)
 	enemy.global_position = global_position
+	get_tree().current_scene.add_child(enemy)
 
 func set_state(value):
 	state = value

@@ -595,7 +595,7 @@ margin_bottom = 45.0
 position = Vector2( 96, 56 )
 
 [node name="TopLeft" parent="Camera2D/Limits" index="0"]
-position = Vector2( -288, -144 )
+position = Vector2( 0, 0 )
 
 [node name="BottomRight" parent="Camera2D/Limits" index="1"]
 position = Vector2( 608, 320 )
