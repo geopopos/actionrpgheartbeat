@@ -28,6 +28,7 @@ onready var sprite = $Sprite
 onready var blinkAnimationPlayer = $BlinkAnimationPlayer
 
 func _ready():
+	global_position = Global.player_initial_map_position
 	stats.connect("no_health", self, "queue_free")
 	animationTree.active = true
 	$HitboxPivot/SwordHitbox/CollisionShape2D.disabled = true

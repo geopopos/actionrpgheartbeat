@@ -1,3 +1,3 @@
 extends Node
 
-var player_initial_map_position = Vector2(200, 200)
+var player_initial_map_position = Vector2(100, 100)
